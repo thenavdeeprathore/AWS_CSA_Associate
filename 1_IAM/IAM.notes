@@ -1,0 +1,41 @@
+# IAM Important Points
+# ====================
+
+=> IAM is a universal system. (applied to all regions at the same time). IAM is a free service
+
+=> Identity Access Management is used to manage access to users and resources
+
+=> A root account is the account initially created when AWS is set up (full administrator access)
+
+=> New IAM users have NO permissions by default until granted
+
+=> New users get assigned an Access Key Id and Secret Access Key when first created when you give them programmatic access
+
+=> Access Keys are only used for CLI and SDK (cannot access console)
+
+=> Access keys are only shown once when created. If lost they must be deleted/recreated again.
+
+=> Always setup MFA for Root Accounts
+
+=> Users must enable MFA on their own, Administrator cannot turn it on for each user
+
+=> IAM allows your set password policies to set minimum password requirements or rotate passwords
+
+=> IAM Identities as Users, Groups, Roles, and Policies
+=> IAM Users: End users who log into the console or interact with AWS resources programmatically
+=> IAM Groups: Group up your Users so they all share permission levels of the group. eg. Administrators, Developers, Auditors
+=> IAM Roles: Associate permissions to a Role and then assign this to an Users or Groups
+=> IAM Policies: JSON documents which grant permissions for a specific user, group, or role to access services.
+
+=> Policies are attached to to IAM Identities
+
+=> Managed Policies are policies provided by AWS and cannot be edited
+
+=> Customer Managed Policies are policies created by use the customer, which you can edit
+
+=> Inline Policies are policies which are directly attached to a user
+
+
+# Q&A
+=> Using SAML (Security Assertion Markup Language 2.0), you can give your federated users single sign-on (SSO) access to the AWS Management Console.
+=> Power User Access allows - Access to all AWS services except the management of groups and users within IAM

@@ -1,0 +1,18 @@
+#!/bin/bash
+yum update -y
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+cd /var/www/html
+echo "<html><h1>Hello Navdeep Welcome To My Webpage</h1></html>"  >  index.html
+aws s3 mb s3://YOURBUCKETNAMEHERE
+aws s3 cp index.html s3://YOURBUCKETNAMEHERE
+
+
+# EC2 instance User-Data -- contains bootstrap information
+curl http://169.254.169.254/latest/user-data
+
+# EC2 instance Meta-Data -- contains information about an instance (such as public ip)
+curl http://169.254.169.254/latest/meta-data
+# get IPv4 from meta-data
+curl http://169.254.169.254/latest/meta-data/local-ipv4

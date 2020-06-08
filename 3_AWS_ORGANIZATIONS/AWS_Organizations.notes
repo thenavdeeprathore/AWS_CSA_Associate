@@ -1,0 +1,13 @@
+# AWS Organizations
+# -----------------
+
+=> It's an account management service
+=> Enables you to consolidate multiple AWS accounts into an organization that you create and centrally manage
+=> Consolidated billing
+=> The more you use, the less you pay
+=> Advantages of Consolidated billing:
+    - One bill per AWS account
+    - Very easy to track charges and allocate costs
+    - Volume pricing discount
+=> Paying account should be used for billing purposes only. Do not deploy resources into the paying account
+=> Enable/Disable AWS services using SCP (Service Control Policies)

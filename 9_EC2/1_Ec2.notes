@@ -1,0 +1,95 @@
+# EC2 Important Points
+# ====================
+
+=> Elastic Compute Cloud (EC2) is a resizable Cloud Computing Service -- highly configurable virtual server.
+=> Allows you to quickly scale up and down.
+=> Configure your EC2 by Choosing your 
+    - OS via AMI (ubuntu)
+    - Instance Types (t2.micro)
+    - Network (VPC)
+    - Subnet (AZ)
+    - Enable termination protection (Accidental Termination)
+    - User Data (bootstrap script)
+    - Storage (EBS, EFS) -- Size, Volume, Delete on Termination
+    - Security Group (Virtual Firewall) -- SSH, HTTP
+    - Create a Key-Pair to SSH
+=> Launch and SSH into your server within minutes.
+=> EC2 Comes in variety Instance Types specialized for different roles:
+    - General purpose: balance of compute, memory and networking resources
+    - Compute Optimized: Ideal for compute bound applications that benefit from high performance processor
+    - Memory Optimized: fast performance for workloads that process large data Sets in memory.
+    - Accelerated Optimized: hardware accelerators, or co-processors
+    - Storage Optimized: high, sequential read and write access to very large data sets on local storage
+=> Instance Sizes generally double in price and key attributes
+=> Instance Profiles a container for an IAM role that you can use to pass role information to an EC2 instance when the instance Starts.
+=> Placement Groups let you to choose the logical placement of your instances to optimize for communication, performance or durability. Placement groups are free.
+=> UserData a script that Will be automatically run when launching an EC2 instance.
+=> MetaData meta data about the current instance. You access this meta data via a local endpoint when SSH'd into the EC2 instance. 
+eg. curl n.t.t2ZL159.2.54A5.92.54L.lAtå.Umu.:.AAlA meta data could be the instance type, current ip address etc...
+
+
+# EC2 has for 4 pricing models 
+=> You pay as you go
+=> Pay for what you use
+=> Pay less as you use more
+=> Pay even less when you reserve capacity
+# 1) On-Demand (least commitment)
+# 2) Reserved Instances - {Standard, Convertible, Scheduled} (Best long-term value)
+# 3) Spot (Biggest Savings)
+# 4) Dedicated (Most Expensive)
+
+=> On-Demand (least commitment)
+    - No up-front payment and No commitment
+    - low cost and flexible
+    - only pay per hour (or by the second)
+    - Use case: short-term, spiky, unpredictable first time apps
+    - Ideal when your workloads cannot be interrupted
+
+=> Reserved Instances upto 75% Off (Best long-term value)
+    - use case: steady state or predictable usage
+    - Can resell unused reserved instances (Reserved Instance Marketplace)
+    - Reduced Pricing is based on Term x Class Offering x Option
+        - Payment Terms: 1 year or 3 year
+        - payment Options: All Upfront, partial Upfront, and No Upfront
+    - Class Offerings
+        - Standard up to 75% reduced pricing compared to on-demand. Cannot change RI Attributes.
+        - Convertible up to 54% reduced pricing compared to on-demand. Allows you to change RI Attributes if greater Or equal in value.
+        - Scheduled You reserve instances for specific time periods. eg once a week for a few hours. Savings vary
+
+
+=> Spot Pricing upto 90% off (Biggest Savings)
+    - request spare computing capacity
+    - flexible start and end times
+    - Use case: Can handle interruptions (server randomly stopping and starting)
+    - Use case: For noncritical background jobs
+    - Instances can be terminated by AWS at anytime
+    - If your instance is terminated by AWS. you don't get charged for a partial hour of usage.
+    - If you terminate an instance you will still be charged for any hour that it ran.
+
+=> Dedicated Hosting (Most Expensive)
+    - Dedicated servers
+    - Great for licensing which doesn't support multi-tenancy
+    - Can be purchased on-demand (hourly)
+    - Can be purchased as reserved instance (upto 70% off)
+    - Use case: When you need a guarantee of isolate hardware (enterprise requirements)
+
+
+
+# Install the Apache web server in EC2 instance
+# Pre-requisite: Launch an Amazon Linux EC2 Instance and SSH into it
+# Pre-requisite: Add edit rules and add an inbound rule with port 80 and source IP of 0.0.0.0/0
+
+# Install the Apache web server
+yum install httpd -y
+# Start the HTTPD service
+service httpd start
+# Enable HTTPD server on startup
+chkconfig httpd on
+
+# Enter yout PUblic IP in the browser
+
+# Create a simple custom index.html page and put it on /var/www/html . This directory is the default directory where Apache webserver will look for index.html file
+echo "Hello. This page is hosted on my AWS EC2 Linux Instance." > /var/www/html/index.html
+# Change the permission of the html folder to give public access to the index.html file
+chmod -R 755 /var/www/html
+

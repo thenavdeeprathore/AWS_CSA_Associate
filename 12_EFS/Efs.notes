@@ -1,0 +1,31 @@
+# EFS Important Points
+# ====================
+
+=> You can't have two EC2 instances sharing the same EBS volume, however you can share EFS with multiple EC2 instances
+
+=> Elastic File System (EFS) supports the Network File System version 4 (NFSv4) protocol.
+=> You only pay for the storage you use (no pre-provisioning required)
+=> Volumes can scale to petabyte size storage
+=> Volumes will shrink and grow to meet current data stored (elastic)
+=> Can support thousands Of concurrent connections over NFS.
+=> Your data is stored across multiple AZs within a region.
+=> Can mount multiple EC2 instance to a single EFS (as long as they are all in the same VPC)
+=> Creates Mount Points in all your VPC subnets so you can mount from anywhere within your VPC
+=> Provides Read After Write Consistency.
+
+
+# Windows FSx
+=> RUns Server Message Block (SMB) based file services
+
+
+# EFS
+When you need distributed, highly resilient storage for Linux instances and Linux-based applications.
+
+# Amazon FSx for Windows
+When you need centralised storage for Windows-based applications such as Sharepoint, Microsoft SQL
+Server, Workspaces, 11S Web Server or any other native Microsoft Application.
+
+# Amazon FSx for Lustre
+When you need high-speed, high-capacity distributed storage. This will be for applications that do High
+Performance Compute (HPC), financial modelling etc. Remember that FSx for Lustre can store data
+directly on S3.

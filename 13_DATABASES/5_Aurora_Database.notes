@@ -1,0 +1,32 @@
+# Amazon Aurora
+
+# Aurora is a MySQL and PostgreSQL compatible relational database engine
+# Combines speed and availability of high-end commercial databases with simplicity and cost-effectiveness of open source databases
+
+=> Aurora provides 5 times better performance than MySQL
+=> Aurora provides 3 times better performance than PostgreSQL
+
+=> Start with 10GB, scales in 10GB increments to 64GB (Storage Autoscaling)
+=> Compute resources can scale up to 32vCPUs and 244GB of Memory
+=> 2 copies of your data is contained in each availability zone with minimum of 3 AZs
+    - 6 copies of your data
+=> Aurora storage is self-healing
+
+=> Three types of Aurora replicas:
+    - Aurora Replicas (currently 15) --> Replica location In-region
+        * Automated failovers is only availabile with Aurora Replicas
+    - MySQL Replicas (currently 5) --> Replica location Cross-region
+    - PostgreSQL (currently 1)
+
+=> Backups
+    - Automated backups are always enabled on Aurora instances
+    - Backups doesn't impact database performance
+    - You can also take snapshots
+    - You can share Aurora snapshots with other AWS accounts
+
+
+# Amazon Aurora Serverless
+- on-demand, autoscaling configuration for the MySQL-compatible and PostgreSQL-compatible
+- In Aurora Serverless DB, cluster automatically starts up, shut down, and scales capacity up or down
+- provides a cost-effective option for infrequent, intermittent or unpredictable workloads
+

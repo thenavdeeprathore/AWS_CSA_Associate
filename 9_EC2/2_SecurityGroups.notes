@@ -1,0 +1,15 @@
+# Security Groups Important Points
+# ================================
+
+# Security Groups (STATEFUL)
+=> STATEFUL -> {if traffic is allowed inbound it is allowed outbound}
+=> Acts as firewall at the instance level
+=> All inbound traffic is BLOCKED by default
+=> All outbound traffic is ALLOWED by default
+=> You can't block the access (Port or IP) in Security Groups, for this you would need a NACL
+=> Any change to a security group takes effect immediately
+=> EC2 instances can belong to multiple security groups
+=> Security groups can contain multiple EC2 instances
+=> You can have upto 10000 Security Groups per Region (default 2500)
+=> You can have 60 inbound and 60 outbound rules per Security Group
+=> You can have 16 Security Groups associated to an ENI (default is 5)

@@ -1,0 +1,40 @@
+# Data Warehousing (OLAP)
+# Used for business intelligence and data warehouseing.
+# Used to pull in very large and complex data sets.
+# Tools like: Cognos, Jaspersoft, SAP NetWeaver, Oracle Hyperion, SQL Server Reporting services
+
+
+# OLTP vs OLAP
+
+
+# Data Warehousing on AWS:
+=> Amazon Redshift
+
+
+# Amazon Redshift:
+=> business intelligence and data warehouseing
+=> Fast and powerful, fully managed, petabyte-scale data warehouse service
+=> Redshift can be configured as follows:
+    - Single Node (160 GB)
+    - Multi-Node
+        * Leader Node (Manages client connections and receive queries)
+        * Compute Node (stores date and perform queries and computations, upto 128 compute nodes)
+=> Uses advanced compression on Columnar data
+=> Massively Parallel Processing (MPP) -- Scale out
+=> Backups
+    - Enable by default with a 1 day retention period
+    - Max retention period is 35 days
+    - At least maintain 3 copies of your data (Original, replica, backup in Amazon S3)
+    - Asynchronously replicate your snapshot to S3 in another region for disaster recovery
+=> Priced
+    - Only charged for Compute Node Hours (1 unit per node per hour)
+    - You will NOT be charged for Leader Node Hours
+    - Charged for backup
+    - Charged for Data Transfer (Only within a VPC, not outside)
+=> Security considerations
+    - Encrypted in transit using SSL
+    - Encrypted at rest using AES-256 encryption
+    - By default RedShift takes care of Key management
+=> Availability
+    - Only available in 1 AZ
+    - Can restore snapshots to new AZs in the veent of an outage

@@ -1,0 +1,54 @@
+# Elastic Block Store Important Points
+# ====================
+
+=> EBS is a Virtual hard disk in the cloud
+=> EBS is a Persistence block storage
+=> There are 5 different types of EBS storage
+=> Volumes always exists in the same AZ as the EC2 instance
+=> EBS volumes is durable, block-level storage device that you can attach to a single EC2 instance
+=> EBS volumes can be modified on the fly. Ex: storage type, or volume size
+=> EBS backed instance can be stopped and you will not lose any data
+
+
+# Snapshots
+=> Snapshots are a point-in-time copy of that disk
+=> Think of snapshots as a photograph of the disk
+=> Volumes exist on EBS, Snapshots exist on S3
+=> Snapshots are incremental, only changes made since the last snapshot are moved to S3
+=> Initial snapshots of an EC2 instance will take longer to create than subsequent snapshots
+=> If taking snapshots of a root volume, the EC2 instance should be stopped before Snapshotting
+=> You can take snapshots while the instance is still running
+=> Snapshots of encrypted volumes are encrypted automatically
+=> Volumes restored from encrypted snapshots will also be encrypted automatically
+=> You can not share a snapshot if it has been encrypted
+=> Unencrypted snapshots can be shared with the other AWS account or made public
+=> You can now encrypt root device volumes upon creation of the EC2 instance.
+
+
+# AMI (Images)
+=> You can create AMIs (Images) from Volumes or from Snapshots
+
+
+# Instance Store (EPHEMERAL Storage)
+=> Instance Store volumes: A temporary storage type located on disks that are physically attached to a host machine
+=> Instance Store volumes: (ephemeral) can not be stopped. If the host fails then you lose your data
+=> You can reboot both EBS and Instance Store, you will not lose your data
+=> By default root volume will be deleted on termination
+
+
+# To move an EC2 volume from one AZ to another:
+Take a snapshot
+Create an AMI from the snapshot
+Use the AMI to launch the EC2 instance in a new AZ
+
+# To move an EC2 volume from one Region to another:
+Take a snapshot
+Create an AMI from the snapshot
+Copy the AMI from one region to another
+Use the copied AMI to launch the EC2 instance in a new Region
+
+# Encrypted root device volumes
+1) Create a snapshot of the unencrypted root device volume
+2) Create a copy of the snapshot and select the encrypted option
+3) Create an AMI from the encrypted snapshot
+4) Use that AMI to launch the new encrypted EC2 instance

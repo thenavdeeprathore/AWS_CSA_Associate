@@ -1,0 +1,24 @@
+# AWS CLI Important Points
+# ===========================
+
+=> AWS CLI is a global service
+=> You will need to set up programmatic access in IAM for both AWS CLI and SDK
+
+
+aws configure
+    Access Key ID
+    Secret Access Key
+    Default region name
+    Default output format
+
+aws s3 ls
+
+cd .aws
+# delete aws credentials
+rm -rf .aws
+
+
+# Roles are more secure than storing your access key and secret access key on individual EC2 instances
+=> Roles are easier to manage
+=> Roles are universal/global
+=> Roles can be assigned to an EC2 instance after it is created using both the console & CLI

@@ -1,0 +1,22 @@
+# CloudFront Important Points
+# ====================
+
+=> Similar like IAM and S3, CloudFront is also a global service.
+=> CloudFront is a CDN (Content Distribution Network). It makes website load fast by serving cached content that is nearby
+=> CloudFront distributes cached copy at Edge Locations
+=> Edge Locations aren't just not read-only, you can write to them eg. PUT Objects
+=> TTL (Time to live) defines how how long until the cache expires (refreshes cache)
+=> When you invalidate your cache. you are forcing it to immediately expire (refreshes cached data)
+=> Refreshing the cache costs money because of transfer costs to update Edge Locations
+
+=> Distribution defines a collection Of Edge Locations and behaviour on how it should handle your cached content
+
+=> Origin Identity Access (OAI) is used access private S3 buckets
+=> Access to cached content can be protected via Signed urls or Signed Cookies
+=> Lambda@Edge allows you to pass each request through a Lambda to change the behaviour of the response.
+
+=> Edge location - This is the location where content will be cached
+=> Origin - This is the origin of all the files that CDN will distribute
+    - This can be S3 bucket, EC2 instance, ELB, or Route53
+=> Distribution - This is the name given to the CDN which consists of collection of edge locations
+=> Distributions has 2 Types: Web Distribution (static website content) RTMP (streaming media)

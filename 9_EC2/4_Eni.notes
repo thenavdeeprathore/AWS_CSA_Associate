@@ -1,0 +1,21 @@
+# ENI Important Points
+# ====================
+
+=> Elastic Network Interface (ENI) - virtual network card
+=> Enhanced Networking (EN) - Subset of ENI. Uses single root I/O virtualization
+=> Elastic Fabric Adapter (EFA) - A network device that you attach to your EC2 instance to accelerate HPC and machine learning applications, OS by-pass.
+
+ENI:
+# When you spin up an EC2 instance i will have ENI attached to it automatically
+=> Primary private IPv4 address
+=> One or more secondary private IPv4 address
+=> One Elastic IP address (IPv4) per private IPv4 address
+=> One public IPv4 address
+=> One or more IPv6 address
+=> A MAC address
+=> source/destination check flag
+=> description
+
+# EN can be enabled using ENA
+=> EN --> when you need speeds between 10Gbps and 100Gbps. Reliable and High Throughput.
+=> ENA supports network speeds of up to 100Gbps for supported instance types

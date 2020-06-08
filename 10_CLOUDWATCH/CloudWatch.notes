@@ -1,0 +1,16 @@
+# CloudWatch Important Points
+# ===========================
+
+=> CloudWatch monitors performance
+=> CloudTrail monitors API calls and user actions in the AWS platform (Auditing)
+
+=> CloudWatch with EC2 will monitor events every 5 mins by default
+=> You can have 1 minute intervals by turning on detailed monitoring (will cost)
+=> You can create CloudWatch alarms which trigger notifications
+=> CloudWatch is a collection of monitoring services
+    - Dashboards
+    - Events
+    - Alarms
+    - Logs
+    - Metrics
+

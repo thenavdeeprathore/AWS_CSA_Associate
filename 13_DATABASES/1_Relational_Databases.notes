@@ -1,0 +1,99 @@
+# RDS is a Traditional databases (OLTP) - tables with rows and columns
+
+# Relational Databases (RDS) on AWS:
+1) SQL Server
+2) Oracle
+3) MySQL Server
+4) PostgreSQL
+5) Aurora {Serverless}
+6) MariaDB
+
+# RDS has two key features:
+=> Multi-AZ : for disaster recovery
+    Multi-AZ is available for the following databases: 
+        - MySQL
+        - MariaDB
+        - PostgreSQL
+        - Oracle
+        - Microsoft SQL Server
+
+    Amazon Aurora is by default fault tolerant
+
+=> Read Replicas : for performance
+    Allows you to have a read-only copy of your production database
+    Used for scaling, not for disaster recovery
+    Achieved by using Asynchronous Replication from the primary RDS instance to the read replicas
+    Must have automated backups turned on to deploy a read replica
+    You can have upto 5 read replica copies of any database
+    Each read replica will have its own DNS endpoint
+    You can have read replicas that have Multi-AZ
+    You can have read replicas in a different region
+    Read Replicas is available for the following databases: 
+        - MySQL
+        - MariaDB
+        - PostgreSQL
+        - Oracle
+        - Amazon Aurora
+
+
+# AWS Management Console --> Database --> RDS
+1) Create database
+2) Engine options
+    - Amazon Aurora
+    - MySQL
+    - MariaDB
+    - PostgreSQL
+    - Oracle
+    - Microsoft SQL Server
+3) Engine option selected - MySQL
+4) Versions - Select MySQL version
+5) Select Templates
+    - Production
+    - Dev/Test
+    - Free Tier
+6) DB instance identifier - navdeepdatabase
+7) Master username - admin
+8) Master password - admin123
+9) DB instance size - Burstable classes - db t2.micro Not EBS optimized
+10) Allocated storage - 20 GB
+11) Enable storage autosclaing
+12) Max storage threshold - 1000
+13) Additional configuration - initial database name - navdeepdatabase
+14) Backup retention period - 0 days
+15) Select Maintenance window
+16) Enable deletion protection
+
+
+# Backups with RDS
+# There are two different types of RDS backups
+1) Automated backups
+    - This is enabled by default
+    - The backup data is stored in S3
+    - If you have RDS instance of 10 GB, you will get 10 GB worth of storage free
+2) Database snapshots
+    - Done manually (they are user initiated)
+    - They are stored even after you delete the original RDS instance, unlike automated backups
+=> Restored version of the database will be a new RDS instance with a new DNS endpoint
+# Encryption at rest
+=> Encryption is done using the AWS KMS service.
+=> Once your RDS instance is encrypted, the data stored at rest in the underlying storage is encrypted, 
+    as are its automated backups, read replicas, and snapshots.
+
+
+# Important Pointers on RDS:
+=> RDS runs on virtual machines which users doesn't have access to
+=> Security, patching, maintenance is managed by AWS for RDS
+=> RDS is NOT serverless
+=> Amazon Aurora is however serverless but RDS is not serverless
+=> RDS Reserved instances are available for multi-AZ deployments
+=> With new RDS DB instances, automated backups are enabled by default
+=> In RDS, maximum value I can set for my backup retention period is 35 days
+=> How many copies of my data does RDS – Aurora store by default - 6
+=> MySQL installations default to port number - 3306
+=> If you want your application to check RDS for an error, have it look for an ______ node in the response from the Amazon RDS API - Error node
+=> What data transfer charge is incurred when replicating data from your primary RDS instance to your secondary RDS instance - No charges
+=> Under what circumstances would I choose provisioned IOPS over standard storage when creating an RDS instance? - If you using online transaction processing in your production environment
+=> If you are using Amazon RDS Provisioned IOPS storage with a Microsoft SQL Server database engine, what is the maximum size RDS volume you can have by default? - 16 TB
+=> In RDS, changes to the backup window take effect - Immediately
+=> Technically a destination port number is needed, however with a DB security group the RDS instance port number is automatically applied to the RDS DB Security Group
+=> When you add a rule to an RDS DB security group, you must specify a port number or protocol. - FALSE

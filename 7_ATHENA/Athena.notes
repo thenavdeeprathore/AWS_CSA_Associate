@@ -1,0 +1,7 @@
+# Athena Important Points
+# ====================
+
+=> Serverless
+=> Athena is an interactive query service
+=> It allows you to query data located in S3 using standard SQL
+=> Commonly used to analyze log data stored in S3

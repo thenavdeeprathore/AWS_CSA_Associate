@@ -1,0 +1,12 @@
+# None Relational Database (NoSQL / JSON)
+- Collections = Table
+- Document = Row
+- Key Value Pairs = Fields
+- Single-digit milisecond latency at any scale
+- Stored on SSD storage
+- Spread across 3 geographical distinct data centers
+- Eventually consistent reads (default)
+- Strongly consistent reads
+
+# Non-Relational Databases on AWS:
+=> DynamoDB

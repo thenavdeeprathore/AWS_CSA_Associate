@@ -1,0 +1,70 @@
+# S3 Important Points
+# ====================
+
+=> Similar to IAM, S3 is also a global service.
+=> Simple Storage Service (S3) Object-based storage. Store unlimited amount of data without worry of underlying storage infrastructure
+=> S3 replicates data across at least 3 AZs to ensure 99.99% Availability and 11' 9s of durability
+=> Objects contain your data (they're like files)
+=> Objects can be size anywhere from O Bytes up to 5 Terabytes
+=> In single upload request You can put an object of around 5 GB but you must have to enable Multipart Upload capability.
+=> Buckets contain objects. Buckets can also contain folders which can in turn can contain objects.
+=> Bucket names are unique across all AWS accounts. Like a domain name.
+=> All new buckets are private by default
+=> When you upload a file to S3 successfully you'll receive a HTTP 200 code
+
+=> Access control is configured using Bucket Policies and Access Control Lists (ACL)
+=> Bucket Policies are JSON documents which let you write complex control access
+=> ACLs are the legacy method (not deprecated) where you grant access to objects and buckets with simple actions
+
+=> Lifecycle Management Objects can be moved between storage classes or objects can be deleted automatically based on a schedule
+=> Lifecycle Management Automates moving objects between the different storage classes/tiers
+
+=> Versioning Objects are giving a Version ID. When new objects are uploaded the old objects are kept. You can access any object version. 
+    When you delete an object the previous object is restored. 
+=> Once Versioning is turned on it cannot be turn off, only suspended.
+=> MFA Delete enforce DELETE operations to require MFA token in order to delete an object. Must have versioning turned on to use. 
+    Can only turn on MFA Delete from the AWS CLI. Root Account is only allowed to delete objects
+
+=> Logging can be turned to on a bucket to log to track operations performed on objects
+
+=> Not suitable to install an operating system
+=> What makes up the cost of S3:
+    - Storage
+    - Requests and Data Retrievals
+    - Data Transfer
+    - Management and Replication
+=> Encryption in transit is achieved by: 
+    - SSL/TLS
+=> Encryption at rest (server side) is achieved by:
+    - S3 managed keys - SSE-S3
+    - AES-256
+    - AWS KMS
+    - Server side encryption with customer provided keys - SSE-C
+=> Client Side Encryption
+
+
+=> 3 different ways to share S3 bucket across accounts:
+    - Using bucket policy and IAM (applies across the entire bucket). Programmatic access only.
+    - Using bucket ACLs and IAM (individual objects). Programmatic access only.
+    - Cross-account IAM roles. Programmatic and Console access.
+
+=> Cross Region Replication
+    - Versioning must be enabled on both the source and destination buckets
+    - Files in an existing bucket are not replicated automatically
+    - All subsequent updated files will be replaced automatically
+    - Delete markers are not replicated
+    - Deleting individual versions or delete markers will not be replicated
+
+=> S3 transfer acceleration utilises the CloudFront edge network to accelerate your uploads to S3
+    - You will get a distinct URL here
+
+
+# Q&A
+=> Until 2018 there was a hard limit on S3 puts of 100 PUTs per second. 
+    To achieve this care needed to be taken with the structure of the name Key to ensure parallel processing. 
+    As of July 2018 the limit was raised to 3500 and the need for the Key design was basically eliminated. 
+    Disk IOPS is not the issue with the problem. The account limit is not the issue with the problem.
+
+=> S3 has eventual consistency for which HTTP Methods -- Overwrite PUTS and DELETES
+=> How many S3 buckets can I have per account by default? -- 100
+=> What is the minimum file size that I can store on S3 -- 0 bytes
