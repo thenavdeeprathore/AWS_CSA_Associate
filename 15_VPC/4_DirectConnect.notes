@@ -1,0 +1,6 @@
+# Direct Connect Important Points
+# ==============================
+
+=> Direct Connect directly connects your data centre to AWS
+=> Useful for high throughput workloads (lots of network traffic)
+=> Or if you need a stable and reliable secure connection

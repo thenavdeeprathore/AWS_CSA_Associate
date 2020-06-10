@@ -1,0 +1,10 @@
+# VPC Endpoint Important Points
+# =============================
+
+=> VPC Endpoints help keep traffic between AWS services within the AWS Network
+=> There are two kinds of VPC Endpoints. Interface Endpoints and Gateway Endpoints
+=> Interface Endpoints cost money, Gateway Endpoints are free
+=> Interface Endpoints uses an Elastic Network Interface (ENI) with Private IP (powered by AWS PrivateLink)
+=> Gateway Endpoints is a target for a specific route in your route table
+=> Interface Endpoints support many AWS services
+=> Gateway Endpoint only support DynamoDB and S3

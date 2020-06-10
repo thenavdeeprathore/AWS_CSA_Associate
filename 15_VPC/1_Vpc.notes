@@ -1,0 +1,42 @@
+# VPC Important Points
+# ====================
+
+=> Think of VPC as datacenter in AWS
+=> VPC consists of:
+    - Internet Gateway (or Virtual Private Gateway)
+    - Route Tables
+    - NACL
+    - Security Groups
+    - Subnets
+=> 1 Subnet = 1 Availability Zone
+=> Security Groups are STATEFUL, NACL are STATELESS
+=> No TRANSITIVE PEERING
+
+=> When you create a custom or new VPC, you will get by default:
+    - Route Table
+    - NACL
+    - Security Group
+=> It won't create any subnets, nor it will create a default internet gateway
+=> Amazon always reserve 5 IP addresses within your subnets
+=> You can only have 1 internet gateway per VPC
+=> Security Groups can't span VPCs
+
+
+# NAT Instance
+=> NAT instances must be in a public subnet
+=> When creating a NAT instance, Disable Source/Destination check on the instance
+=> There must be a Route out of the private subnet to the NAT instance, in order to work
+=> NAT instances are behind a Security Group
+
+
+# NAT Gateway
+=> Redundant inside the AZ
+=> Preferred by the enterprise
+=> Starts at 5Gbps and scales currently to 45Gbps
+=> No need to patch
+=> Not associated with security group
+=> Automatically assigned a public IP address
+=> Remember to update your route tables
+=> No need to disable Source/Destination checks
+=> Create a NAT Gateway in each AZ
+

@@ -1,0 +1,15 @@
+# NACL Important Points
+# ====================
+
+=> Your VPC automatically comes with a default NACL and by default it allows all inbound and outbound traffic
+=> You can create custom NACL. By default it denies all inbound and outbound traffic until you add rules
+=> Block IP addresses using NACL, Security Groups can't block IP addresses
+=> Each subnet in your VPC must be associated with a NACL
+    If you don't explicitly associate a subnet with a NACL, the subnet is automatically associated with a default NACL
+
+=> You can associate NACL with multiple subnets
+    A subnet can be associated with only one NACL at a time
+    When you associate a NACL with a subnet, the previous asscoiate is removed
+=> NACL contains a numbered list of rules that is evaluated in order, starting with the lowest numbered rule
+=> NACL are STATELESS (have to add both inbound and outbound rules)
+=> NACL have seperate inbound and outbound rules and each rule either allow or deny traffic
