@@ -1,0 +1,12 @@
+=> 3 different types of Load Balancers
+    - Application Load Balancer
+    - Network Load Balancer
+    - Classic Load Balancer
+
+=> ELB must have at least 2 AZ
+=> 504 Error means gateway has timed out
+=> If you need IPv4 address of your end user, look for the X-Forwarded-For header
+
+=> Instances monitored by ELB are reported as: InService, OutService
+=> Health Checks check the instance health by talking to it
+=> Load Balancers have their own DNS name. You are never given an IP address

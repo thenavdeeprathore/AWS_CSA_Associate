@@ -1,0 +1,68 @@
+=> Simple Notification Service
+=> SNS is fast, reliable, fully managed push notification service
+=> Push notifications
+=> Instantaneous push-based delivery (no polling)
+=> It is a web service that coordinates and manages the delivery or sending of messages to subscribing endpoints or clients
+=> It allows for sending individuals messages or fan-out messages (multiple) to a large number of recipients or to other distributed AWS services
+=> SMS text messages, EMAIL, HTTP endpoint
+=> Group multiple recipients using TOPICS
+=> Messages published to an SNS topics will be delivered to the subscriber immediately
+=> All messages are published to SNS are stored redundantly across multiple AZs in the same region
+=> Inexpensive, pay-as-you-go model with no up-front costs
+
+
+Publisher --> SNS Topic --> Subscriber {Lambda, SQS, HTTP/S, Email, SMS}
+
+# Publisher
+=> Publishers are also known as Producers that produce and send the messages to the SNS which is a logical access point
+
+# Subscriber
+=> Subscriber such as webservers, email addresses, SQS, Lambda receive the message or notification from the SNS over one of the supported protocols {Lambda, SQS, HTTP/S, Email, SMS}
+
+# SNS Topic
+=> Logical access point and communication channel
+=> Each Topic has unique name within the same AWS account
+=> A topic name is limited to 256 alphanumeric characters
+=> Each topic is assigned an AWS ARN once it gets created
+=> A topic can support subscribers and notifications deliveries over multiple protocols {Lambda, SQS, HTTP/S, Email, SMS}
+=> Messages / requests published to a single topic can be delivered over multiple protocols as configured when creating each subscriber
+=> Delivery formats / transport protocols (endpoints)
+ -> SMS
+ -> Email
+ -> Email-JSON
+ -> HTTP/HTTPS
+ -> SQS
+ -> Lambda
+=> By default, only the topic owner (who created it) can publishe to the SNS topic
+=> The owner can set/change permissions to one or more users (with Valid AWS ID) to publish to his topic
+=> Only owner of the topic can grant/change permissions for the topic
+=> Subscribers can be those with/without AWS ID
+    -> Only subscribers with AWS ID can request subscription
+=> Supports push notification platforms
+    -> Amazon device messaging
+    -> Apple push notification service
+    -> Google cloud messaging
+    -> Windows push notification service
+    -> Baidu cloud push for android
+=> SNS topic can have subscribers from any supported push notification platform, as well as any other endpoint type such as SMS or Email
+
+# Amazon SNS alternatives
+=> Amazon Kinesis Data stream
+=> Amazon Managed Queue service
+=> Apache Kafka
+=> Twilio
+=> Pusher
+
+# Amazon SNS pricing
+1) Publish action
+- Each 64 KB if request payload count as one request. So 256 KB payload will charged as four request
+2) Mobile push notification
+- for eg $0.50 / million requests
+3) SMS
+- depends on country
+4) Email
+- $2 / 100000
+5) HTTP/S notification
+- $0.60 / million
+6) SQS and Lambda calls are free. These are charged at SQS and lambda rates
+7) Data transfer

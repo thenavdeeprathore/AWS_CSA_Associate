@@ -1,0 +1,13 @@
+=> solution for creating secure APIs in your cloud environment at any scale
+=> fully managed service
+=> "front door" for applications to access data
+=> Expose HTTPS endpoints to define RESTful API
+=> Serverless-ly connect to services like Lambda & DynamoDB
+=> Send each API endpoint to a different target
+=> Low cost and Scale automatically
+=> Throttle requests to prevent attacks
+=> You can log results to CloudWatch
+=> If you are using Javascript/AJAX that uses multiple domains with API gateway, ensure that you have enabled CORS on API gateway
+=> CORS is enforced by client
+=> Same Origin Policies help to revent XSS attacks
+=> Same origin policies ignore tolls like postman and curl

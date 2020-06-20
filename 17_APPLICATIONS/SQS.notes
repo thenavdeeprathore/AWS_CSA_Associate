@@ -1,0 +1,95 @@
+=> SQS - simple queue service (decoupling your infrastructure/application)
+    - Decoupling: failure of one component doesn't impact other components in the application
+=> SQS is pull-based service, not push-based service (you must have EC2 instances pulling out)
+=> SQS is fast, reliable, fully managed message queue service
+=> It is a webservice that gives you access to message queues that store messages waiting to be processed
+=> Using SQS, you no longer need a highly available message cluster
+=> You can delete all the messages in an SQS queue without deleting the SQS queue itself
+=> You can use autoscaling to scale the EC2 fleet processing the SQS messages as the queue size increases
+=> These applications on EC2 instances can process the SQS messages and then post the results to other SQS queues or other AWS services
+
+
+=> Two types of queue service:
+    - Standard queue
+        -> High (unlimited) throughput {No specific sequence or order}
+        -> At least One delivery
+        -> Duplicacy is possible
+        -> Best effort ordering
+    - FIFO queue
+        -> Limited throughput (300 TPS)
+        -> Exactly One processing
+        -> No Duplicacy
+        -> Strict ordering First-In-First-Out
+        -> Expensive than Standard queue
+
+# Pricing:
+    - FREE TIER account: The first 1 million monthly requests are free, after that pricing is according to regions
+        In Mumbai Region:
+            -> Standard queue: $0.40 per million request
+            -> FIFO queue: $0.50 per million request
+
+
+# How Amazon SQS charges
+    1) API action -  every SQS action count as a request
+    2) FIFO request - API actions for sending, receiveing, deleting and changing visibility of messages from FIFO queues are charged at FIFO rates
+    3) Contents of requests - A single request can have from 1 to 10 messages, upto a maximum total payload of 256 KB
+    4) Size of payload - Each 64 KB chunk of a payload is billed as 1 request
+        (for eg: API action with a 256 KB payload is billed as 4 requests)
+    5) Interaction with S3
+    6) Interaction with AWS KMS
+
+
+# Short polling vs Long polling
+# 1) Short Polling
+=> A request is returned immediately even if the queue is empty
+    -> It doesn't wait for messages to appear in the queue
+    -> It queries only a subset of the available servers for messages (based on weighted random number distribution)
+    -> Default by SQS
+    -> ReceiveMessageWaitTime is set to 0
+=> More requests are use, which implies higher cost
+
+# 2) Long Polling
+=> Is is more preferred than short polling. It uses fewer requests and request cost
+    ->Eliminating false empty response by querying all the servers
+    ->Reduce the number of empty responses, by allowing SQS to wait until the message is available in the queue unless the connection timeout (20 sec)
+    -> ReceiveMessageWaitTime is set to a non-zero value (max 20 seconds)
+=> billing is same for both polling
+
+
+# SQS Retention period
+=> Messages can be kept in the queue from 1 minute(60 seconds) to 14 days.
+    - Default retention period is 4 days
+=> Once the maximum retention period of a message is reached, it will be deleted automatically from the queue
+=> Messages can be sent to the queue and read from the queue simultaneously
+=> SQS can be used with DynamoDB, EC2, ECS, Redshift, RDS, Lambda, S3 to make distributed/decoupled application
+=> You can have multiple queues with different priorities
+
+
+# SQS Visibility timeout
+=> It is the duration of time a message is locked for Read by other servers
+=> Maximum Visibility timeout is 12 hours
+=> Default Visibility timeout is 30 seconds
+=> A server tht read a message to process it, can change the message visibility timeout if it needs more time to process the message
+=> After a message is read, there are two possibilities:
+    - An acknowledgement is received that a message is processed, so it must be deleted from the queue to avoid duplicates
+    - If a fail is received or the visibility timeout expires, the message will then be unlocked for read, such that it can be read and processed by another server
+
+
+# SQS Delivery delay
+=> SQS provides delivery delay option to postpone the delivery of new messages to a queue
+    -> If delivery delay is defined for a queue, any new messages will not be visible to the server for the duration of delay
+    -> Default (min) dealy for a queue is 0 seconds
+    -> Max delay is 15 minutes
+# Receive MessageWaitTime
+=> Default time is 0 seconds (short polling)
+=> Max amount of time that a long polling receive call will wait for a message to become available before returning an empty response
+    -> Max value is 20 seconds
+
+
+# SQS Dead Letter Queue {for Simple Queue}
+=> Messages who got failed 3 times while processing
+=> Handling message failure
+=> It lets you set aside and isolate messages that can't be processed correctly to determine why their processing didn't succeed
+=> Don't use a dead letter queue with a FIFO queue if you don't want to break the exact order of messages or operations
+=> DLQ must be of the same type as the source queue (standard or FIFO)
+=> when SQS msgs failed to process three time they moved to DLQ, and then developer and technical team will take a look of that problem

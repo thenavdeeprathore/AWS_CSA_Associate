@@ -1,0 +1,18 @@
+=> Simple Work Flow service
+=> Human actions
+=> Manual process
+
+=> SQS has a retention period of 14 days
+ - SWF has a retention period of upto 1 year
+
+=> SQS presents a message-oriented API
+    - SWF offers a task-oriented API
+
+=> SQS need to handle duplicate messages
+    - SWF needs to handle task is only assigned once and is never duplicated
+
+=> SWF actors
+    - Workflow starters
+    - Deciders
+    - Activity workers
+
